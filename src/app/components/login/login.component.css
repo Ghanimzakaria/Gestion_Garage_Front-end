@@ -1,0 +1,9 @@
+.login-container {
+  width: 300px;
+  margin: 50px auto;
+  text-align: center;
+}
+.error {
+  color: red;
+  margin-top: 10px;
+}

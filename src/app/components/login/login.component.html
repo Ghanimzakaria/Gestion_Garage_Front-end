@@ -1,0 +1,13 @@
+<div class="login-container">
+  <h2>Login</h2>
+  <form (submit)="onLogin()">
+    <label for="username">Username:</label>
+    <input id="username" [(ngModel)]="credentials.username"  type="text" required [ngModelOptions]="{standalone: true}" />
+
+    <label for="password">Password:</label>
+    <input id="password" [(ngModel)]="credentials.password" type="password" required [ngModelOptions]="{standalone: true}" />
+
+    <button type="submit">Login</button>
+  </form>
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+</div>
