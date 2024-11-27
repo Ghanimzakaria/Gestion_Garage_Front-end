@@ -1,0 +1,31 @@
+<div class="container">
+  <h2>Gestion des Voitures</h2>
+
+  <!-- Liste des voitures -->
+  <ul>
+    <li *ngFor="let car of cars">
+      <strong>{{ car.brand }} {{ car.model }}</strong>
+      ({{ car.registration_number }}) - {{ car.status }}
+      <button (click)="selectCar(car)">Modifier</button>
+      <button (click)="deleteCar(car.id)">Supprimer</button>
+    </li>
+  </ul>
+
+  <!-- Formulaire d'ajout ou de modification -->
+  <div>
+    <h3 *ngIf="editMode">Modifier Voiture</h3>
+    <h3 *ngIf="!editMode">Ajouter une Voiture</h3>
+
+    <form (ngSubmit)="editMode ? updateCar() : addCar()">
+      <input type="text" [(ngModel)]="registration_number" name="registration_number" placeholder="Matricule" required />
+      <input type="text" [(ngModel)]="brand" name="brand" placeholder="Marque" required />
+      <input type="text" [(ngModel)]="model" name="model" placeholder="Modèle" required />
+      <select [(ngModel)]="status" name="status">
+        <option value="in_progress">En cours</option>
+        <option value="completed">Terminé</option>
+        <option value="under_review">En révision</option>
+      </select>
+      <button type="submit">{{ editMode ? 'Modifier' : 'Ajouter' }}</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<!-- home.component.html -->
+<div *ngIf="userRole === 'admin'">
+  <a routerLink="/admin">Admin Dashboard</a>
+</div>
+<div *ngIf="userRole === 'employee'">
+  <a routerLink="/employee">Employee Dashboard</a>
+</div>
+<div *ngIf="userRole === 'client'">
+  <a routerLink="/client">Client Dashboard</a>
+</div>

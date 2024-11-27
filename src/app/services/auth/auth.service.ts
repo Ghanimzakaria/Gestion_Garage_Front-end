@@ -15,10 +15,15 @@ export class AuthService {
     return this.http.post(this.apiUrl, credentials);
   }
 
-  saveToken(token: string): void {
+  saveToken(token: string,role:string): void {
     localStorage.setItem('auth_token', token);
-  }
+    localStorage.setItem('role', role)
 
+
+  }
+  getRole(){
+    return localStorage.getItem('role')
+  }
   getToken(): string | null {
     return localStorage.getItem('auth_token');
   }
@@ -26,4 +31,6 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('auth_token');
   }
+
+
 }
