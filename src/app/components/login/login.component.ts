@@ -24,7 +24,7 @@ export class LoginComponent {
   onLogin(): void {
     this.authService.login(this.credentials).subscribe({
       next: (response) => {
-        this.authService.saveToken(response.token,response.role);
+        this.authService.saveToken(response.access_token, response.refresh_token, response.role);
         if (response) {
           // Navigate based on user role
           if (response.role === 'admin') {

@@ -20,10 +20,10 @@ export class CarService {
   }
 
   updateCar(immatriculation: string, car: any): Observable<any> {
-    return this.http.put<any>(`${this.apiUrl}${immatriculation}update/`, car);
+    return this.http.put<any>(`${this.apiUrl}${immatriculation}/update/`, car);
   }
 
   deleteCar(immatriculation: string): Observable<any> {
-    return this.http.delete<any>(`${this.apiUrl}${immatriculation}delete/`);
+    return this.http.delete<any>(`${this.apiUrl}${immatriculation}/delete/`);
   }
 }

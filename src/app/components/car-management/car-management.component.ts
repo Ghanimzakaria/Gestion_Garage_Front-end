@@ -12,7 +12,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 })
 export class CarManagementComponent implements OnInit {
   cars: any[] = [];
-  newCar = { registration_number: '', brand: '', model: '', status: 'in_progress' };
   selectedCar: any = null;
   editMode: boolean = false;
 
@@ -20,6 +19,8 @@ export class CarManagementComponent implements OnInit {
   brand: string = '';
   model: string = '';
   status: string = 'in_progress';
+  assigned_employee:string = ''
+  client: string = ''
 
   constructor(private carService: CarService) {}
 
@@ -34,7 +35,7 @@ export class CarManagementComponent implements OnInit {
   }
 
   addCar(): void {
-    const carToAdd = { registration_number: this.registration_number, brand: this.brand, model: this.model, status: this.status };
+    const carToAdd = { registration_number: this.registration_number, brand: this.brand, model: this.model, status: this.status, assigned_employee: this.assigned_employee, client: this.client};
     this.carService.addCar(carToAdd).subscribe(() => {
       this.fetchCars();
       this.resetForm();
@@ -43,8 +44,8 @@ export class CarManagementComponent implements OnInit {
 
   updateCar(): void {
     if (this.selectedCar) {
-      const updatedCar = { registration_number: this.registration_number, brand: this.brand, model: this.model, status: this.status };
-      this.carService.updateCar(this.selectedCar.id, updatedCar).subscribe(() => {
+      const updatedCar = { registration_number: this.registration_number, brand: this.brand, model: this.model, status: this.status, assigned_employee: this.assigned_employee, client: this.client };
+      this.carService.updateCar(this.selectedCar.registration_number, updatedCar).subscribe(() => {
         this.fetchCars();
         this.resetForm();
         this.selectedCar = null;
@@ -65,6 +66,8 @@ export class CarManagementComponent implements OnInit {
     this.brand = car.brand;
     this.model = car.model;
     this.status = car.status;
+    this.assigned_employee = car.assigned_employee
+    this.client = car.client
     this.editMode = true;
   }
 
@@ -73,5 +76,7 @@ export class CarManagementComponent implements OnInit {
     this.brand = '';
     this.model = '';
     this.status = 'in_progress';
+    this.assigned_employee= '' ;
+    this.client = '';
   }
 }

@@ -15,8 +15,9 @@ export class AuthService {
     return this.http.post(this.apiUrl, credentials);
   }
 
-  saveToken(token: string,role:string): void {
-    localStorage.setItem('auth_token', token);
+  saveToken(access_token: string,refresh_token: string,role:string,): void {
+    localStorage.setItem('access_token', access_token);
+    localStorage.setItem('refresh_token', refresh_token);
     localStorage.setItem('role', role)
 
 
