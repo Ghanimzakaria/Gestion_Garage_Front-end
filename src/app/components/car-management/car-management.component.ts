@@ -21,7 +21,7 @@ export class CarManagementComponent implements OnInit {
   status: string = 'in_progress';
   assigned_employee:string = ''
   client: string = ''
-
+  role:string|null = localStorage.getItem('role')
   constructor(private carService: CarService) {}
 
   ngOnInit(): void {

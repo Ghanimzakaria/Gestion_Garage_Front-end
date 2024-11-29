@@ -7,7 +7,7 @@
       <strong>{{ car.brand }} {{ car.model }}</strong>
       ({{ car.registration_number }}) - {{ car.status }}
       <button (click)="selectCar(car)">Modifier</button>
-      <button (click)="deleteCar(car.registration_number)">Supprimer</button>
+      <button *ngIf="role === 'admin'" (click)="deleteCar(car.registration_number)">Supprimer</button>
     </li>
   </ul>
 
@@ -17,16 +17,16 @@
     <h3 *ngIf="!editMode">Ajouter une Voiture</h3>
 
     <form (ngSubmit)="editMode ? updateCar() : addCar()">
-      <input type="text" [(ngModel)]="registration_number" name="registration_number" placeholder="Matricule" required />
-      <input type="text" [(ngModel)]="brand" name="brand" placeholder="Marque" required />
-      <input type="text" [(ngModel)]="model" name="model" placeholder="Modèle" required />
+      <input type="text" [(ngModel)]="registration_number" name="registration_number" placeholder="Matricule" [readonly]="role === 'employee'" required />
+      <input type="text" [(ngModel)]="brand" name="brand" placeholder="Marque" [readonly]="role === 'employee'" required />
+      <input type="text" [(ngModel)]="model" name="model" placeholder="Modèle" [readonly]="role === 'employee'" required />
       <select [(ngModel)]="status" name="status">
         <option value="in_progress">En cours</option>
         <option value="completed">Terminé</option>
         <option value="under_review">En révision</option>
       </select>
-      <input type="text" [(ngModel)]="assigned_employee" name="employé" placeholder="employé" required />
-      <input type="text" [(ngModel)]="client" name="clinet" placeholder="client" required />
+      <input *ngIf="role === 'admin'" type="text" [(ngModel)]="assigned_employee" name="employé" placeholder="employé" required />
+      <input *ngIf="role === 'admin'" type="text" [(ngModel)]="client" name="client" placeholder="client" required />
       <button type="submit">{{ editMode ? 'Modifier' : 'Ajouter' }}</button>
     </form>
   </div>

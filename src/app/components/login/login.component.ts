@@ -28,15 +28,13 @@ export class LoginComponent {
         if (response) {
           // Navigate based on user role
           if (response.role === 'admin') {
-            this.router.navigate(['/admin'])
-
+            this.router.navigate(['/car'])
           } else if (response.role === 'employee') {
-            this.router.navigate(['/employee']);
+            this.router.navigate(['/car']);
           } else if (response.role === 'client') {
             this.router.navigate(['/client']);
           }
         }
-        alert('Login successful!');
       },
       error: () => {
         this.errorMessage = 'Invalid username or password';

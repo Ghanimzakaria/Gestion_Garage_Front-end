@@ -1,0 +1,20 @@
+.car-detail-container {
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+h2 {
+  color: #333;
+}
+
+p {
+  margin: 10px 0;
+  font-size: 16px;
+}
+
+p strong {
+  color: #555;
+}

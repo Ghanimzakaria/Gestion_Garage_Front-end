@@ -1,1 +1,13 @@
-<p>client works!</p>
+<div class="car-detail-container">
+  <h2>Your Cars Details</h2>
+
+  <ul>
+    <li *ngFor="let car of carDetails">
+      <strong>{{ car.brand }} {{ car.model }}</strong>
+      ({{ car.registration_number }}) - {{ car.status }}
+      </li>
+  </ul>
+  <ng-template #noCar>
+    <p>No car details available for your account.</p>
+  </ng-template>
+</div>
