@@ -1,7 +1,7 @@
 <header>
   <nav class="navbar">
     <div class="logo">MyApp</div>
-    <ul class="menu">
+    <ul *ngIf="role === 'admin'"  class="menu">
       <li><a routerLink="/car">Car Management</a></li>
       <li><a routerLink="/user">User Management</a></li>
       <!-- Add more menu items as needed -->

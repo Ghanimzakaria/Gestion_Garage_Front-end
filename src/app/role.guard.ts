@@ -17,8 +17,8 @@ export class RoleGuard implements CanActivate {
     const userRole = this.authService.getRole();  // Get role from stored JWT or session
 
     if (route.data['role'] && !route.data['role'].includes(userRole)) {
-      // If the role doesn't match, redirect to a different page (e.g., home)
-      this.router.navigate(['/home']);
+      console.log('rrrrrrrrrrrrrrrr',route.data['role'].includes(userRole))
+      this.router.navigate(['/login']);
       return false;
     }
 

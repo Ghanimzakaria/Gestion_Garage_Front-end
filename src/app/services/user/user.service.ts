@@ -19,4 +19,7 @@ export class UserService {
   addUser(userData: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/user/register/`, userData);
   }
+  deleteUser(username: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/user/${username}/delete/`);
+  }
 }

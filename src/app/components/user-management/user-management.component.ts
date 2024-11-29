@@ -1,18 +1,20 @@
-import {Component, OnInit} from '@angular/core';
-import {UserService} from '../../services/user/user.service';
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user/user.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user-management',
   standalone: true,
-  imports: [],
+  imports: [CommonModule, FormsModule],
   templateUrl: './user-management.component.html',
-  styleUrl: './user-management.component.css'
+  styleUrls: ['./user-management.component.css'],
 })
 export class UserManagementComponent implements OnInit {
   users: any[] = [];
   newUser = {
     username: '',
-    email: '',
+    password: '',
     role: 'client', // Default role
   };
 
@@ -22,26 +24,27 @@ export class UserManagementComponent implements OnInit {
     this.fetchUsers();
   }
 
-  // Fetch all users
   fetchUsers(): void {
-    this.userService.getUsers().subscribe({
-      next: (data) => (this.users = data),
-      error: (err) => console.error(err),
+    this.userService.getUsers().subscribe((data) => {
+      this.users = data;
     });
   }
 
-  // Add a new user
   addUser(): void {
-    this.userService.addUser(this.newUser).subscribe({
-      next: (response) => {
-        alert(response.message);
-        this.fetchUsers(); // Refresh the user list
-        this.newUser = { username: '', email: '', role: 'client' }; // Reset the form
-      },
-      error: (err) => {
-        console.error(err);
-        alert('Failed to add user. Please check the form data.');
-      },
+    const userToAdd = { ...this.newUser };
+    this.userService.addUser(userToAdd).subscribe(() => {
+      this.fetchUsers(); // Refresh the user list
+      this.resetForm(); // Reset the form
     });
+  }
+
+  deleteUser(username: string): void {
+    this.userService.deleteUser(username).subscribe(() => {
+      this.fetchUsers(); // Refresh the user list
+    });
+  }
+
+  resetForm(): void {
+    this.newUser = { username: '', password: '', role: 'client' };
   }
 }
